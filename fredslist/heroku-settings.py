@@ -1,5 +1,6 @@
 import dj_database_url
 import os
+import whitenoise
 from .settings import *
 
 DEBUG = False
@@ -19,3 +20,5 @@ STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, '../global/'),
 )
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
