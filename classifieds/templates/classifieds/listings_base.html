@@ -1,0 +1,25 @@
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Fred's List - Listings By City{% endblock %}</title>
+    {% bootstrap_css %}
+    <script src="{% bootstrap_jquery_url %}"></script>
+    {% bootstrap_javascript %}
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+
+</head>
+<body id="pagecontainer">
+
+
+{% block content %}
+
+
+{% endblock %}
+</body>
+</html>

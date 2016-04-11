@@ -1,0 +1,12 @@
+{% extends 'classifieds/listings_base.html' %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+<h2 class="postingtitle">
+{{ listing.title }}</h2>
+<div id="listingimage">
+<img src="{{ listing.image.url }}" />
+</div>
+<h5 class="postingbody">{{ listing.body }}</h5>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'userprofiles/profile_base.html' %}
+
+{% load bootstrap3 %}
+{% block settingsactive %}active{% endblock %}
+{% block content %}
+
+
+     <h1>Updating {{ profile.user.username }}'s Profile</h1>
+     <form method="post" action="{% url "update_profile" profile.id %}">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons submit="save" %}{% endbuttons %}
+
+{% endblock %}

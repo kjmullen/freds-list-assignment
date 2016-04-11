@@ -1,0 +1,18 @@
+{% extends 'userprofiles/profile_base.html' %}
+
+{% load bootstrap3 %}
+{% block userlistingsactive %}active{% endblock %}
+{% block content %}
+    <ul>
+    {% for listing in listing_list %}
+
+        <li><a href="{% url 'listing_detail' listing.id %}">{{ listing.title }}</a>  {{ listing.created_at }}</li>
+        <small>[
+            <a href="{% url 'update_listing' listing.pk %}">update</a>
+            ][
+            <a href="{% url 'delete_listing' listing.pk %}">delete</a>
+            </small>]
+
+    {% endfor %}
+    </ul>
+{% endblock %}

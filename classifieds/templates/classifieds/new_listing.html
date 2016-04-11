@@ -1,0 +1,17 @@
+{% extends 'classifieds/listings_base.html' %}
+
+{% load bootstrap3 %}
+
+{% block title %}Fred's List - New Listing {% endblock %}
+
+{% block content %}
+
+    <h1>New Listing</h1>
+
+    <form method="post" action="{% url 'new_listing' %}" class="form">
+
+        {% csrf_token %}
+        {% bootstrap_form form %}
+    <input type="submit" name="submit" value="submit">
+    </form>
+{% endblock %}

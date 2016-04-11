@@ -1,0 +1,88 @@
+{% extends 'classifieds/listings_base.html' %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+
+{% if user.profile.city %}
+
+<div id="topban">{{ user.profile.city }}</div>
+
+<div id="leftbar">
+<a id="logo" href="{% url 'city_list' %}">fredslist</a>
+
+<ul id="navlinks">
+    <li><a href="{% url 'new_listing' %}">post to classifieds</a></li>
+
+    <li><a href="{% url 'user_listings' %}">my account</a></li>
+</ul>
+</div>
+<div id="center">
+<div id="communityhousingjobs">
+    <div id="communitycontainer">
+    <div id="community">
+    <a href="{% url 'category_listings' community_category.id %}">{{ community_category.name }}</a>
+    </div>
+    <ul id="insidecommunity">
+    {% for subcategory in community_category.subcategory_set.all %}
+    <li><a href="{% url 'subcategory_listings' subcategory.id %}">{{ subcategory.name }}</a></li>
+    {% endfor %}
+    </ul>
+    </div>
+    <div id="housingcontainer">
+    <div id="housing">
+    <a href="{% url 'category_listings' housing_category.id %}">{{ housing_category.name }}</a>
+    </div>
+    <ul id="insidecommunity">
+    {% for subcategory in housing_category.subcategory_set.all %}
+    <li><a href="{% url 'subcategory_listings' subcategory.id %}">{{ subcategory.name }}</a></li>
+    {% endfor %}
+    </ul>
+     <div id="community">
+    <a href="{% url 'category_listings' forsale_category.id %}">{{ forsale_category.name }}</a>
+    </div>
+    <ul id="insidecommunity">
+    {% for subcategory in forsale_category.subcategory_set.all %}
+    <li><a href="{% url 'subcategory_listings' subcategory.id %}">{{ subcategory.name }}</a></li>
+    {% endfor %}
+    </ul>
+    <div id="community">
+    <a href="{% url 'category_listings' services_category.id %}">{{ services_category.name }}</a>
+    </div>
+    <ul id="insidecommunity">
+    {% for subcategory in services_category.subcategory_set.all %}
+    <li><a href="{% url 'subcategory_listings' subcategory.id %}">{{ subcategory.name }}</a></li>
+    {% endfor %}
+    </ul>
+
+
+    </div>
+<div id="jobscontainer">
+    <div id="community">
+    <a href="{% url 'category_listings' jobs_category.id %}">{{ jobs_category.name }}</a>
+    </div>
+    <ul id="insidecommunity">
+    {% for subcategory in jobs_category.subcategory_set.all %}
+    <li><a href="{% url 'subcategory_listings' subcategory.id %}">{{ subcategory.name }}</a></li>
+    {% endfor %}
+    </ul>
+</div>
+</div>
+
+
+
+
+
+
+</div>
+{% endif %}
+    <ul id="citylist">
+    {% for city in city_list %}
+
+     <li>   <a href="{% url 'redirect_city' city.pk %}"> {{ city.name }}</a></li>
+
+    {% endfor %}
+    </ul>
+
+
+{% endblock %}
