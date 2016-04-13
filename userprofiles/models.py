@@ -13,7 +13,6 @@ class Profile(models.Model):
     city = models.ForeignKey(City, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
 
-
     @property
     def city_name_and_id(self):
         return [self.city.name, self.city_id]
