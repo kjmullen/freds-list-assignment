@@ -13,3 +13,8 @@ class ListingForm(forms.ModelForm):
         widgets = {
             'description': Textarea(attrs={'rows': 4, 'cols': 45})
         }
+
+
+class SearchForm(forms.Form):
+
+    search = forms.CharField(label='Search', max_length=150)

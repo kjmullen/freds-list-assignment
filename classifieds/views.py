@@ -3,15 +3,15 @@ from classifieds.models import Listing, City, Category, SubCategory
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView, CreateView,\
-RedirectView, View
-from userprofiles.models import Profile
+from django.views.generic import ListView, DetailView, CreateView, \
+    RedirectView, View
 
 
 def get_city(request):
     city = request.session.get("city", None)
 
-    if hasattr(request.user, 'profile') and hasattr(request.user.profile, "city"):
+    if hasattr(request.user, 'profile') and hasattr(request.user.profile,
+                                                    "city"):
         return request.user.profile.city
     elif request.session.get("city", None):
         return City.objects.get(pk=city.pk)
@@ -46,7 +46,10 @@ class SubCategoryListings(ListView):
         return Listing.objects.all().filter(subcategory=subcategory)\
             .filter(city=get_city(self.request))
 
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['subcategory'] = SubCategory.objects.get(pk=self.kwargs['pk'])
+        return context
 
 
 class CategoryListings(ListView):
@@ -59,6 +62,11 @@ class CategoryListings(ListView):
         return Listing.objects.all().filter(
             subcategory__in=category.subcategory_set.all()) \
             .filter(city=get_city(self.request))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.get(pk=self.kwargs['pk'])
+        return context
 
 
 class CityList(ListView):
@@ -90,7 +98,7 @@ class SessionCity(RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         session_city = get_object_or_404(City, pk=self.kwargs["pk"])
-        self.request.session["city_pk"] = session_city.pk
+        self.request.session["city__pk"] = session_city.pk
         if self.request.user.username:
             self.request.user.profile.city = session_city
             self.request.user.profile.save()

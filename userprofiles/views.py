@@ -6,8 +6,10 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.shortcuts import render
 from django.views.generic import CreateView, UpdateView, ListView, DeleteView
+from rest_framework.authtoken.models import Token
 from userprofiles.forms import ProfileForm
 from userprofiles.models import Profile
+
 
 
 class RegisterUser(CreateView):
@@ -19,7 +21,6 @@ class RegisterUser(CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        Profile.objects.create(user=self.object)
         return response
 
 
@@ -31,6 +32,19 @@ class UpdateProfile(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('user_listings')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['token'] = self.request.user.auth_token
+        context['profile'] = self.request.user.profile
+
+        return context
+
+    def reset_token(self):
+        if "reset" in self.kwargs['token_reset']:
+            self.request.user.profile.reset_token()
+
+
 
 
 class UserListings(LoginRequiredMixin, ListView):
@@ -45,6 +59,7 @@ class UserListings(LoginRequiredMixin, ListView):
         return query
 
 
+
 class UpdateListing(LoginRequiredMixin, UpdateView):
 
     model = Listing
@@ -53,6 +68,9 @@ class UpdateListing(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('listing_detail', args=(self.object.id,))
+
+
+
 
 
 class DeleteListing(LoginRequiredMixin, DeleteView):

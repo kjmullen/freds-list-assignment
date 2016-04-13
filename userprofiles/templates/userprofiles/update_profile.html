@@ -6,9 +6,14 @@
 
 
      <h1>Updating {{ profile.user.username }}'s Profile</h1>
-     <form method="post" action="{% url "update_profile" profile.id %}">
+
+     <form method="post" name='form1' action="{% url "update_profile" profile.id %}">
         {% csrf_token %}
         {% bootstrap_form form %}
         {% buttons submit="save" %}{% endbuttons %}
+     </form>
+
+    token: {{ token }} <button formaction="{{ profile.reset_token }}">refresh page for new token</button>
+
 
 {% endblock %}

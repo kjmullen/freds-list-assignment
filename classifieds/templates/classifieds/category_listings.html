@@ -10,6 +10,14 @@
 
     {% endif %}
 
+    {% for subcategory in category.subcategory_set.all %}
+
+        {% for listing in subcategory.price_desc %}
+            {{ listing.title }}
+            {% endfor %}
+
+    {% endfor %}
+
     {% for listing in listing_list %}
 
         {{ listing.created_at|date:"M d" }} <a href="{% url 'listing_detail' listing.id %}">{{ listing.title }}</a> {{ listing.price }}

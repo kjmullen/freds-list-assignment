@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'cities/redirect/(?P<pk>\d+)/$', SessionCity.as_view(),
         name="redirect_city"),
+    url(r'^api/', include("api.urls")),
     url(r'^u/', include("userprofiles.urls")),
     url(r'^l/', include("classifieds.urls")),
     url(r'^logout/$', logout, {'next_page': reverse_lazy('index')},
