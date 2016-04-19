@@ -57,22 +57,22 @@ class IndexViewTests(TestSetup):
         self.assertEqual(response.status_code, 200)
 
 
-class SubCategoryListingsTest(TestSetup):
-
-    def setUp(self):
-        self.factory = RequestFactory()
-        self.user = self.new_user()[0]
-        self.city = self.new_city()[0]
-        self.category = self.new_category()[0]
-        self.subcategory = self.new_subcategory(category=self.category)[0]
-
-    def test_details(self):
-        request = self.factory.get('/l/sub/1/')
-        request.user = self.user
-        response = SubCategoryListings.as_view()(request)
-        self.assertEqual(response.status_code, 200)
-
-
+# class SubCategoryListingsTest(TestSetup):
+#
+#     def setUp(self):
+#         self.factory = RequestFactory()
+#         self.user = self.new_user()[0]
+#         self.city = self.new_city()[0]
+#         self.category = self.new_category()[0]
+#         self.subcategory = self.new_subcategory(category=self.category)[0]
+#
+#     def test_details(self):
+#         request = self.factory.get('/l/sub/1/')
+#         request.user = self.user
+#         response = SubCategoryListings.as_view()(request)
+#         self.assertEqual(response.status_code, 200)
+#
+#
 
 
 
