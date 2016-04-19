@@ -18,7 +18,7 @@ before_script:
 - psql -c "CREATE DATABASE fredslist;" -U postgres
 - python manage.py migrate
 script:
-- coverage run --source='.' manage.py test classifieds userprofiles api
+- coverage run --source='.' manage.py test classifieds userprofiles api --omit heroku-settings.py
 after_success:
 - coveralls
 deploy:
