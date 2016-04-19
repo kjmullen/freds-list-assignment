@@ -1,4 +1,6 @@
 Babel==2.3.1
+coverage==4.0.3
+coveralls==1.1
 dj-database-url==0.4.1
 Django==1.9.5
 django-bootstrap3==7.0.1
@@ -7,12 +9,17 @@ django-extensions==1.6.1
 django-money==0.7.6
 django-phonenumber-field==1.1.0
 djangorestframework==3.3.3
+docopt==0.6.2
+fake-factory==0.5.7
 gunicorn==19.4.5
 phonenumberslite==7.2.8
 Pillow==3.2.0
 psycopg2==2.6.1
 py-moneyed==0.6.0
+python-dateutil==2.5.2
+python-memcached==1.57
 pytz==2016.3
+requests==2.9.1
 six==1.10.0
 sqlparse==0.1.19
 whitenoise==3.0
