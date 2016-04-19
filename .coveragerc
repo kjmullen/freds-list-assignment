@@ -1,2 +1,2 @@
 [report]
-omit = */migrations/*, */apps.py, fredslist/fredslist/*
+omit = */migrations/*, */apps.py, fredslist/*
