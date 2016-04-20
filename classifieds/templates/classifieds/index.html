@@ -2,7 +2,7 @@
 
 {% load bootstrap3 %}
 
-{% load cache %}
+
 
 {% block content %}
 
@@ -19,7 +19,7 @@
     <li><a href="{% url 'user_listings' %}">my account</a></li>
 </ul>
 </div>
-    {% cache 60 * 5 category_list %}
+
 <div id="center">
 <div id="communityhousingjobs">
     <div id="communitycontainer">
@@ -73,20 +73,19 @@
 </div>
 
 
-{% endcache %}
+
 
 
 
 </div>
 {% endif %}
     <ul id="citylist">
-    {% cache 60*5 city_list %}
+
     {% for city in city_list %}
 
      <li>   <a href="{% url 'redirect_city' city.pk %}"> {{ city.name }}</a></li>
 
     {% endfor %}
-    {% endcache %}
     </ul>
 
 
