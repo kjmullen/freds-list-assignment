@@ -1,8 +1,9 @@
-from classifieds.models import Category, SubCategory, City
-from classifieds.views import IndexView, SubCategoryListings
+from classifieds.models import Category, SubCategory, City, Listing
+from classifieds.views import IndexView, SubCategoryListings, CategoryListings
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from django.test import TestCase, RequestFactory
+from django.contrib.sessions.middleware import SessionMiddleware
 from faker import Faker
 
 
@@ -33,6 +34,16 @@ class TestSetup(TestCase):
                        for _ in range(number)]
         return self.cities
 
+    def new_listing(self, user, subcategory, city, number=1):
+        self.listings = [Listing.objects.create(title=self.fake.word(),
+                                                body=self.fake.word(),
+                                                price=10,
+                                                user=user,
+                                                subcategory=subcategory,
+                                                city=city)
+                         for _ in range(number)]
+        return self.listings
+
 
 class IndexViewTests(TestSetup):
 
@@ -57,22 +68,48 @@ class IndexViewTests(TestSetup):
         self.assertEqual(response.status_code, 200)
 
 
-# class SubCategoryListingsTest(TestSetup):
+class SubCategoryListingsTest(TestSetup):
+
+    def setUp(self):
+        self.factory = RequestFactory()
+        self.user = self.new_user()[0]
+        self.city = self.new_city()[0]
+        self.category = self.new_category()[0]
+        self.subcategory = self.new_subcategory(category=self.category)[0]
+        self.listings = self.new_listing(self.user, self.subcategory,
+                                         self.city, 2)
+        self.othersubcategory = self.new_subcategory(category=self.category)[0]
+        self.listings = self.new_listing(self.user, self.othersubcategory,
+                                         self.city, 5)
+
+
+    def test_details(self):
+        request = self.factory.get('/l/sub/')
+        request.user = self.user
+        request.session = {'city': self.city}
+        response = SubCategoryListings.as_view()(request, pk=1)
+        self.assertEqual(self.subcategory.listing_set.count(), 2)
+        # self.assertEqual(response.context_data['listing_set'].count(), 2)
+        self.assertEqual(response.status_code, 200)
+
+#
+# class CategoryListingsTest(TestSetup):
 #
 #     def setUp(self):
 #         self.factory = RequestFactory()
-#         self.user = self.new_user()[0]
 #         self.city = self.new_city()[0]
+#         self.user = self.new_user()[0]
 #         self.category = self.new_category()[0]
-#         self.subcategory = self.new_subcategory(category=self.category)[0]
+#         self.subcategory = self.new_subcategory(self.category)
+#         self.listings = self.new_listing(self.user,
+#                                          self.subcategory, self.city, 2)
 #
 #     def test_details(self):
-#         request = self.factory.get('/l/sub/1/')
+#         request = self.factory.get('l/cat/')
 #         request.user = self.user
-#         response = SubCategoryListings.as_view()(request)
-#         self.assertEqual(response.status_code, 200)
-#
-#
+#         request.session = {'city': self.city}
+#         response = CategoryListings.as_view()(request, pk=1)
+
 
 
 
