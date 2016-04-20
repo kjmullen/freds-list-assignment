@@ -79,20 +79,21 @@ class SubCategoryListingsTest(TestSetup):
         self.listings = self.new_listing(self.user, self.subcategory,
                                          self.city, 2)
         self.othersubcategory = self.new_subcategory(category=self.category)[0]
-        self.listings = self.new_listing(self.user, self.othersubcategory,
+        self.otherlistings = self.new_listing(self.user, self.othersubcategory,
                                          self.city, 5)
 
-
     def test_details(self):
-        request = self.factory.get('/l/sub/')
+        request = self.factory.get('/l/sub/1/', data={self.subcategory:
+                                                          self.listings})
         request.user = self.user
+        request.subcategory = self.subcategory
         request.session = {'city': self.city}
         response = SubCategoryListings.as_view()(request, pk=1)
-        self.assertEqual(self.subcategory.listing_set.count(), 2)
-        # self.assertEqual(response.context_data['listing_set'].count(), 2)
+        subcategory = response.context_data['subcategory']
+        self.assertEqual(subcategory.listing_set.count(), 2)
         self.assertEqual(response.status_code, 200)
 
-#
+
 # class CategoryListingsTest(TestSetup):
 #
 #     def setUp(self):
@@ -105,12 +106,16 @@ class SubCategoryListingsTest(TestSetup):
 #                                          self.subcategory, self.city, 2)
 #
 #     def test_details(self):
-#         request = self.factory.get('l/cat/')
+#         request = self.factory.get('l/cat/1/')
 #         request.user = self.user
 #         request.session = {'city': self.city}
 #         response = CategoryListings.as_view()(request, pk=1)
-
-
+#         category = response.context_data['category']
+#         subcategories = category.subcategory_set
+#         self.assertEqual(subcategories.listing_set.count(), 2)
+#
+#
+#
 
 
 
