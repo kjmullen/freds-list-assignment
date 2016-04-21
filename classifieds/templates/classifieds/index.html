@@ -2,11 +2,9 @@
 
 {% load bootstrap3 %}
 
-
-
 {% block content %}
 
-{% if user.profile.city %}
+{% load cache %}
 
 <div id="topban">{{ user.profile.city }}</div>
 
@@ -19,7 +17,7 @@
     <li><a href="{% url 'user_listings' %}">my account</a></li>
 </ul>
 </div>
-
+{% cache 300 category_list %}
 <div id="center">
 <div id="communityhousingjobs">
     <div id="communitycontainer">
@@ -75,10 +73,9 @@
 
 
 
-
-
+{% endcache %}
+{% cache 360 city_list %}
 </div>
-{% endif %}
     <ul id="citylist">
 
     {% for city in city_list %}
@@ -88,5 +85,5 @@
     {% endfor %}
     </ul>
 
-
+{% endcache %}
 {% endblock %}
