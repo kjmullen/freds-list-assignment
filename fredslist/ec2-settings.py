@@ -5,7 +5,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'fredslist',
         'USER': 'postgres',
-        'PASSWORD': os.environ['DB_PASSWORD'],
+        'PASSWORD': os.environ["DB_PASSWORD"],
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -13,3 +13,5 @@ DATABASES = {
 
 DEBUG = False
 STATIC_ROOT='staticfiles'
+
+ALLOWED_HOSTS = ['*']
