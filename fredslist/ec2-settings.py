@@ -6,12 +6,12 @@ DATABASES = {
         'NAME': 'fredslist',
         'USER': 'postgres',
         'PASSWORD': os.environ["DB_PASSWORD"],
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1',
         'PORT': '',
     }
 }
 
 DEBUG = False
-STATIC_ROOT='staticfiles'
+STATIC_ROOT = 'staticfiles'
 
 ALLOWED_HOSTS = ['*']
