@@ -45,8 +45,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.reddit',
-    'allauth.socialaccount.providers.soundcloud',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.instagram',
     'rest_framework',

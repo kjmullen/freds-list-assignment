@@ -17,7 +17,7 @@
     <li><a href="{% url 'userprofiles:user_listings' %}">my account</a></li>
 </ul>
 </div>
-{% cache 300 category_list %}
+{% cache 300 category.id %}
 <div id="center">
 <div id="communityhousingjobs">
     <div id="communitycontainer">
@@ -74,7 +74,7 @@
 
 
 {% endcache %}
-{% cache 360 city_list %}
+{% cache 360 city.id %}
 </div>
     <ul id="citylist">
 

@@ -30,7 +30,7 @@ class UpdateProfile(LoginRequiredMixin, UpdateView):
     template_name = "userprofiles/update_profile.html"
 
     def get_success_url(self):
-        return reverse_lazy('user_listings')
+        return reverse_lazy('userprofiles:user_listings')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
