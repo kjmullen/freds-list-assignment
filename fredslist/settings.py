@@ -41,11 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django_extensions',
+    'debug_toolbar',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.reddit',
     'allauth.socialaccount.providers.soundcloud',
+    'allauth.socialaccount.providers.facebook',
     'rest_framework',
     'rest_framework.authtoken',
     'bootstrap3',
@@ -86,6 +88,9 @@ TEMPLATES = [
         },
     },
 ]
+
+
+ACCOUNT_EMAIL_REQUIRED = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -172,6 +177,8 @@ REST_FRAMEWORK = {
     )
 
 }
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 CACHES = {
     'default': {

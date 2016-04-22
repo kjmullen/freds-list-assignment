@@ -11,7 +11,6 @@ from userprofiles.forms import ProfileForm
 from userprofiles.models import Profile
 
 
-
 class RegisterUser(CreateView):
 
     model = User
@@ -45,8 +44,6 @@ class UpdateProfile(LoginRequiredMixin, UpdateView):
             self.request.user.profile.reset_token()
 
 
-
-
 class UserListings(LoginRequiredMixin, ListView):
 
     model = Listing
@@ -54,7 +51,8 @@ class UserListings(LoginRequiredMixin, ListView):
     paginate_by = 15
 
     def get_queryset(self):
-        query = Listing.objects.all().filter(user=self.request.user) \
+        query = Listing.objects.select_related('user').all()\
+            .filter(user=self.request.user) \
             .order_by('-created_at')
         return query
 

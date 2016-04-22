@@ -19,7 +19,7 @@
     {% for listing in listing_list %}
 
 
-        <li>{{ listing.created_at|date:"M d" }} <a href="{% url 'listing_detail' listing.id %}">{{ listing.title }} {{ listing.price }}</a></li>
+        <li>{{ listing.created_at|date:"M d" }} <a href="{% url 'classifieds:listing_detail' listing.id %}">{{ listing.title }} {{ listing.price }}</a></li>
 
     {% endfor %}
     </ul>

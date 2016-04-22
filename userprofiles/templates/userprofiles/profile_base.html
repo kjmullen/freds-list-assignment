@@ -30,13 +30,13 @@
     {% endif %}
 
     <p><a href="{% url 'index' %}">fredslist</a> >
-        <a href="{% url 'user_listings' %}">home of {{ user.username }}</a>
+        <a href="{% url 'userprofiles:user_listings' %}">home of {{ user.username }}</a>
     </p>
 
 
     <ul class="nav nav-tabs">
-    <li role="presentation" class="{% block userlistingsactive %}{% endblock %}"><a href="{% url 'user_listings' %}">postings</a></li>
-    <li role="presentation" class="{% block settingsactive %}{% endblock %}"><a href="{% url 'update_profile' user.profile.id %}">settings</a></li>
+    <li role="presentation" class="{% block userlistingsactive %}{% endblock %}"><a href="{% url 'userprofiles:user_listings' %}">postings</a></li>
+    <li role="presentation" class="{% block settingsactive %}{% endblock %}"><a href="{% url 'userprofiles:update_profile' user.profile.id %}">settings</a></li>
     </ul>
 
 {% block content %}

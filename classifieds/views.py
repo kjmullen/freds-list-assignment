@@ -43,7 +43,8 @@ class SubCategoryListings(ListView):
 
     def get_queryset(self):
         subcategory = get_object_or_404(SubCategory, pk=self.kwargs['pk'])
-        return Listing.objects.all().filter(subcategory=subcategory)\
+        return Listing.objects.select_related('city').all()\
+            .filter(subcategory=subcategory)\
             .filter(city=get_city(self.request))
 
     def get_context_data(self, **kwargs):
@@ -59,8 +60,8 @@ class CategoryListings(ListView):
 
     def get_queryset(self):
         category = get_object_or_404(Category, pk=self.kwargs['pk'])
-        return Listing.objects.all().filter(
-            subcategory__in=category.subcategory_set.all()) \
+        return Listing.objects.select_related('city').all().filter(
+            subcategory__in=category.subcategories.all()) \
             .filter(city=get_city(self.request))
 
     def get_context_data(self, **kwargs):

@@ -4,15 +4,17 @@
 {% block userlistingsactive %}active{% endblock %}
 {% block content %}
     <ul>
+    {% if user.listings %}
     {% for listing in listing_list %}
 
-        <li><a href="{% url 'listing_detail' listing.id %}">{{ listing.title }}</a>  {{ listing.created_at }}</li>
+        <li><a href="{% url 'classifieds:listing_detail' listing.id %}">{{ listing.title }}</a>  {{ listing.created_at }}</li>
         <small>[
-            <a href="{% url 'update_listing' listing.pk %}">update</a>
+            <a href="{% url 'userprofiles:update_listing' listing.pk %}">update</a>
             ][
-            <a href="{% url 'delete_listing' listing.pk %}">delete</a>
+            <a href="{% url 'userprofiles:delete_listing' listing.pk %}">delete</a>
             </small>]
 
     {% endfor %}
+    {% endif %}
     </ul>
 {% endblock %}

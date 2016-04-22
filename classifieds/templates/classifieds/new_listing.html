@@ -8,7 +8,7 @@
 
     <h1>New Listing</h1>
 
-    <form method="post" action="{% url 'new_listing' %}" class="form">
+    <form method="post" action="{% url 'classifieds:new_listing' %}" class="form">
 
         {% csrf_token %}
         {% bootstrap_form form %}

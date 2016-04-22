@@ -7,7 +7,7 @@
 
      <h1>Updating {{ profile.user.username }}'s Profile</h1>
 
-     <form method="post" name='form1' action="{% url "update_profile" profile.id %}">
+     <form method="post" name='form1' action="{% url "userprofiles:update_profile" profile.id %}">
         {% csrf_token %}
         {% bootstrap_form form %}
         {% buttons submit="save" %}{% endbuttons %}

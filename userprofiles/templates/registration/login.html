@@ -5,7 +5,7 @@
     <title>Fred's List Login</title>
 </head>
 <body>
-
+{% load socialaccount %}
     <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next }}">
@@ -13,5 +13,8 @@
         <input type="submit" name="submit" value="Log In!">
     </form>
 
+    <h3>sign in with facebook</h3>
+
+<a href="{% provider_login_url "facebook" method="oauth2" %}">facebook Login</a>
 </body>
 </html>
