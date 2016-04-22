@@ -90,7 +90,7 @@ class SubCategoryListingsTest(TestSetup):
         request.session = {'city': self.city}
         response = SubCategoryListings.as_view()(request, pk=1)
         subcategory = response.context_data['subcategory']
-        self.assertEqual(subcategory.listing_set.count(), 2)
+        self.assertEqual(subcategory.listings.count(), 2)
         self.assertEqual(response.status_code, 200)
 
 
