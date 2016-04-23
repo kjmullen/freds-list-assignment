@@ -29,11 +29,11 @@ urlpatterns = [
     url(r'^api/', include("api.urls")),
     url(r'^u/', include("userprofiles.urls", namespace='userprofiles')),
     url(r'^l/', include("classifieds.urls", namespace='classifieds')),
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^logout/$', logout, {'next_page': reverse_lazy('index')},
         name='logout'),
     url(r'^register/$', RegisterUser.as_view(), name="register"),
     url('^', include('django.contrib.auth.urls')),
-    url(r'^accounts/', include('allauth.urls')),
     url('^$', IndexView.as_view(), name="index"),
 
 

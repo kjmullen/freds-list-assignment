@@ -1,10 +1,10 @@
 {% extends 'classifieds/listings_base.html' %}
 
 {% load bootstrap3 %}
-
+{% load cache %}
 {% block content %}
 
-{% load cache %}
+
 
 <div id="topban">{{ user.profile.city }}</div>
 
@@ -17,7 +17,9 @@
     <li><a href="{% url 'userprofiles:user_listings' %}">my account</a></li>
 </ul>
 </div>
-{% cache 300 category.id %}
+
+{% cache 300 category_list %}
+
 <div id="center">
 <div id="communityhousingjobs">
     <div id="communitycontainer">
@@ -71,10 +73,9 @@
 </div>
 
 
-
-
 {% endcache %}
-{% cache 360 city.id %}
+
+{% cache 360 city_list %}
 </div>
     <ul id="citylist">
 
@@ -86,4 +87,5 @@
     </ul>
 
 {% endcache %}
+
 {% endblock %}
