@@ -57,7 +57,6 @@ class UserListings(LoginRequiredMixin, ListView):
         return query
 
 
-
 class UpdateListing(LoginRequiredMixin, UpdateView):
 
     model = Listing
@@ -68,11 +67,8 @@ class UpdateListing(LoginRequiredMixin, UpdateView):
         return reverse('listing_detail', args=(self.object.id,))
 
 
-
-
-
 class DeleteListing(LoginRequiredMixin, DeleteView):
 
     model = Listing
     template_name = "userprofiles/delete_listing.html"
-    success_url = reverse_lazy('user_listings')
+    success_url = reverse_lazy('userprofiles:user_listings')

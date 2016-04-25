@@ -3,6 +3,7 @@ from classifieds.models import Listing, City, Category, SubCategory
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.shortcuts import render, get_object_or_404
+from django.views.decorators.cache import cache_page
 from django.views.generic import ListView, DetailView, CreateView, \
     RedirectView, View
 
@@ -60,8 +61,8 @@ class CategoryListings(ListView):
 
     def get_queryset(self):
         category = get_object_or_404(Category, pk=self.kwargs['pk'])
-        return Listing.objects.select_related('city').all().filter(
-            subcategory__in=category.subcategories.all()) \
+        return Listing.objects.all().filter(
+            subcategory__in=category.subcategories.all())\
             .filter(city=get_city(self.request))
 
     def get_context_data(self, **kwargs):

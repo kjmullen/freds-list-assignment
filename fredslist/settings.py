@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'userprofiles',
     'classifieds',
     'djmoney',
-
 ]
 
 SITE_ID = 1

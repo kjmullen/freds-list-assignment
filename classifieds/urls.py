@@ -1,7 +1,7 @@
 from classifieds.views import ListingDetail, CityList, \
     NewListing, SubCategoryListings, CategoryListings, IndexView
 from django.conf.urls import url
-
+from django.views.decorators.cache import cache_page
 
 urlpatterns = [
     url(r'^detail/(?P<pk>\d+)/$', ListingDetail.as_view(),
