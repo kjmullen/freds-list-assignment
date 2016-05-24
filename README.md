@@ -2,6 +2,4 @@
 [![Coverage Status](https://coveralls.io/repos/github/kjmullen/freds-list-assignment/badge.svg?branch=master)](https://coveralls.io/github/kjmullen/freds-list-assignment?branch=master)
 
 # Fred's List
-
-## Description
 A [craigslist clone](http://www.craigslist.org/)

@@ -21,6 +21,7 @@ class Profile(models.Model):
         token = Token.objects.get(user=self.user)
         token.delete()
         Token.objects.create(user=self.user)
+        # self.user.save()
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
