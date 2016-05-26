@@ -18,7 +18,9 @@
 
 }
 
-#citylist {
+
+
+#citydiv {
     list-style: none;
     text-transform: lowercase;
     float: left;

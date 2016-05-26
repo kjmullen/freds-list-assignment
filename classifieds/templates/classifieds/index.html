@@ -73,6 +73,7 @@
 
 {% cache 360 city_list %}
 </div>
+    <div id="citydiv">
     <ul id="citylist">
 
     {% for city in city_list %}
@@ -80,7 +81,9 @@
      <li>   <a href="{% url 'redirect_city' city.pk %}"> {{ city.name }}</a></li>
 
     {% endfor %}
+
     </ul>
+    </div>
 
 {% endcache %}
 
