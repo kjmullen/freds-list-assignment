@@ -24,7 +24,7 @@
     border-right: 1px #ccc solid;
     float: left;
     min-width: 10em;
-    font-size: 70%;
+    font-size: 90%;
     line-height: 1.43em;
     margin-top: -3.75em;
     min-height: 850px;
@@ -38,7 +38,9 @@
     list-style: none;
     text-transform: lowercase;
     float: left;
-    margin-left: 0;
+    text-align: center;
+    margin-left: 24%;
+    margin-top: 53%;
     padding-left: 0;
 }
 
