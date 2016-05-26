@@ -18,9 +18,23 @@
 
 }
 
-
-
 #citydiv {
+    background: #f4f4f4;
+    border-left: 1px #ccc solid;
+    border-right: 1px #ccc solid;
+    float: left;
+    min-width: 10em;
+    font-size: 70%;
+    line-height: 1.43em;
+    margin-top: -3.75em;
+    min-height: 850px;
+    padding: 5px 0;
+    text-align: center;
+    vertical-align: top;
+    width: 11%;
+}
+
+#citylist {
     list-style: none;
     text-transform: lowercase;
     float: left;
