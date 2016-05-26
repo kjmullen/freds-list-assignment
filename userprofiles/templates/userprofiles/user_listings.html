@@ -3,18 +3,35 @@
 {% load bootstrap3 %}
 {% block userlistingsactive %}active{% endblock %}
 {% block content %}
-    <ul>
-    {% if user.listings %}
-    {% for listing in listing_list %}
 
-        <li><a href="{% url 'classifieds:listing_detail' listing.id %}">{{ listing.title }}</a>  {{ listing.created_at }}</li>
-        <small>[
+    <table class="userpostings">
+    <thead>
+    <tr id="tableheads"><th>manage</th>
+    <th>posting title</th>
+    <th>area and category</th>
+    <th>posted date</th></tr>
+    </thead>
+    <tbody>
+    {% for listing in listing_list %}
+    <tr>
+        <td><small>[
             <a href="{% url 'userprofiles:update_listing' listing.pk %}">update</a>
             ][
             <a href="{% url 'userprofiles:delete_listing' listing.pk %}">delete</a>
             </small>]
-
+        </td>
+        <td>
+            <a href="{% url 'classifieds:listing_detail' listing.id %}">{{ listing.title }}</a>
+        </td>
+        <td>
+            {{ listing.city }} > {{ listing.subcategory }}
+        </td>
+        <td>
+            {{ listing.created_at }}
+        </td>
+    </tr>
     {% endfor %}
-    {% endif %}
-    </ul>
+    </tbody>
+
+    </table>
 {% endblock %}
