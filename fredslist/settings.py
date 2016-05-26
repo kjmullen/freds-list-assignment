@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.instagram',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_swagger',
     'bootstrap3',
     'api',
     'userprofiles',

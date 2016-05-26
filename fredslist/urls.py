@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'cities/redirect/(?P<pk>\d+)/$', SessionCity.as_view(),
         name="redirect_city"),
     url(r'^api/', include("api.urls")),
+    url(r"^docs/", include('rest_framework_swagger.urls')),
     url(r'^u/', include("userprofiles.urls", namespace='userprofiles')),
     url(r'^l/', include("classifieds.urls", namespace='classifieds')),
     url(r'^accounts/', include('allauth.urls')),
