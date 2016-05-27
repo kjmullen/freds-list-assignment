@@ -3,25 +3,18 @@
 {% load bootstrap3 %}
 
 {% block content %}
-
+    <div id="listingscontainer">
     {% if not listing_list %}
 
         no posts here
 
     {% endif %}
 
-    {% for subcategory in category.subcategory_set.all %}
-
-        {% for listing in subcategory.price_desc %}
-            {{ listing.title }}
-            {% endfor %}
-
-    {% endfor %}
 
     {% for listing in listing_list %}
 
-        {{ listing.created_at|date:"M d" }} <a href="{% url 'classifieds:listing_detail' listing.id %}">{{ listing.title }}</a> {{ listing.price }}
+        <p>{{ listing.created_at|date:"M d" }} <a href="{% url 'classifieds:listing_detail' listing.id %}">{{ listing.title }}</a> {{ listing.price }}</p>
 
     {% endfor %}
-
+    </div>
 {% endblock %}
