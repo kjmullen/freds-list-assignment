@@ -39,32 +39,32 @@ class UserSerializer(serializers.ModelSerializer):
 
 class CitySerializer(serializers.ModelSerializer):
 
-    listing_set = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    listings = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = City
-        fields = ('name', 'id', 'listing_set')
+        fields = ('name', 'id', 'listings')
 
 
 class CategorySerializer(serializers.ModelSerializer):
 
-    subcategory_set = serializers.PrimaryKeyRelatedField(many=True,
+    subcategories = serializers.PrimaryKeyRelatedField(many=True,
                                                          read_only=True)
 
     class Meta:
         model = Category
-        fields = ('id', 'name', 'subcategory_set')
+        fields = ('id', 'name', 'subcategories')
 
 
 class SubCategorySerializer(serializers.ModelSerializer):
 
     category = CategorySerializer(read_only=True)
-    listing_set = serializers.PrimaryKeyRelatedField(many=True,
+    listings = serializers.PrimaryKeyRelatedField(many=True,
                                                       read_only=True)
 
     class Meta:
         model = SubCategory
-        fields = ('id', 'category', 'name', 'listing_set')
+        fields = ('id', 'category', 'name', 'listings')
 
 
 class ListingSerializer(serializers.ModelSerializer):

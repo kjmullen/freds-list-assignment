@@ -13,6 +13,8 @@
         <input type="submit" name="submit" value="Log In!">
     </form>
 
+    <h3><a href="{% url 'register' %}">register</a></h3>
+
     <h3>sign in with facebook</h3>
 <a href="{% provider_login_url "facebook" method="oauth2" %}">facebook Login</a>
 
